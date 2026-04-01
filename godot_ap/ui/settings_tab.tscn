@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp2yir3r1061y"]
+[gd_scene format=3 uid="uid://dp2yir3r1061y"]
 
 [ext_resource type="Script" uid="uid://nuk1liowalgx" path="res://godot_ap/ui/SettingsTab.gd" id="1_vvcbk"]
 [ext_resource type="Script" uid="uid://b2s7dh7bhjw7m" path="res://godot_ap/ui/theme_manager.gd" id="2_4hq1s"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_oksvb"]
 
-[node name="Settings" type="MarginContainer"]
+[node name="Settings" type="MarginContainer" unique_id=1267887606]
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
@@ -14,18 +14,18 @@ theme_override_constants/margin_bottom = 0
 script = ExtResource("1_vvcbk")
 metadata/_tab_index = 3
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=619314661]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Tabs" type="TabContainer" parent="Margin"]
+[node name="Tabs" type="TabContainer" parent="Margin" unique_id=72600281]
 layout_mode = 2
 current_tab = 0
 
-[node name="Theme" type="MarginContainer" parent="Margin/Tabs" node_paths=PackedStringArray("themes", "default_theme")]
+[node name="Theme" type="MarginContainer" parent="Margin/Tabs" unique_id=128949135 node_paths=PackedStringArray("themes", "default_theme")]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
@@ -36,13 +36,13 @@ themes = [NodePath("Row/Col1/DarkTheme"), NodePath("Row/Col1/LightTheme")]
 default_theme = NodePath("Row/Col1/DarkTheme")
 metadata/_tab_index = 0
 
-[node name="Row" type="HBoxContainer" parent="Margin/Tabs/Theme"]
+[node name="Row" type="HBoxContainer" parent="Margin/Tabs/Theme" unique_id=1030171588]
 layout_mode = 2
 
-[node name="Col1" type="VBoxContainer" parent="Margin/Tabs/Theme/Row"]
+[node name="Col1" type="VBoxContainer" parent="Margin/Tabs/Theme/Row" unique_id=511010881]
 layout_mode = 2
 
-[node name="DarkTheme" type="CheckBox" parent="Margin/Tabs/Theme/Row/Col1"]
+[node name="DarkTheme" type="CheckBox" parent="Margin/Tabs/Theme/Row/Col1" unique_id=1485381773]
 layout_mode = 2
 button_pressed = true
 button_group = SubResource("ButtonGroup_oksvb")
@@ -51,7 +51,7 @@ script = ExtResource("3_aogvt")
 target_theme_path = "res://godot_ap/ui/themes/dark_theme.tres"
 metadata/_custom_type_script = "uid://cttniyxj6oq7h"
 
-[node name="LightTheme" type="CheckBox" parent="Margin/Tabs/Theme/Row/Col1"]
+[node name="LightTheme" type="CheckBox" parent="Margin/Tabs/Theme/Row/Col1" unique_id=495032221]
 layout_mode = 2
 button_group = SubResource("ButtonGroup_oksvb")
 text = "Light Mode"

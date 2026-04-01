@@ -121,6 +121,7 @@ func install_hint_listener() -> void:
 	var hint_str := "_read_hints_%d_%d" % [team_id, player_id]
 	set_notify(hint_str, _load_hints_from_json)
 	retrieve(hint_str, _load_hints_from_json)
+	
 func _load_hints_from_json(new_hints: Array) -> void:
 	hints = []
 	for json in new_hints:
@@ -182,6 +183,7 @@ func scout(location: int, create_as_hint: int, proc: Callable) -> void:
 		if not _scout_queue.has(location):
 			_scout_queue[location] = [proc]
 		else: _scout_queue[location].append(proc)
+		
 func _on_locinfo(json: Dictionary) -> void:
 	var locs = json.get("locations", [])
 	for loc in locs:

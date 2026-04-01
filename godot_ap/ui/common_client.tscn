@@ -1,11 +1,188 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn7ah7d3ep4de"]
+[gd_scene format=3 uid="uid://cn7ah7d3ep4de"]
 
 [ext_resource type="PackedScene" uid="uid://cgq7n1figlpu3" path="res://godot_ap/ui/base_client.tscn" id="1_i5jgm"]
+[ext_resource type="PackedScene" uid="uid://3f1qeaa1mo7k" path="res://APMinesweeper/APMinesweeper.tscn" id="2_kwywh"]
 [ext_resource type="PackedScene" uid="uid://dp2yir3r1061y" path="res://godot_ap/ui/settings_tab.tscn" id="3_4k5ff"]
+[ext_resource type="Script" uid="uid://cyc8jkqjagswj" path="res://godot_ap/ui/connect_box.gd" id="5_hladf"]
+[ext_resource type="Script" uid="uid://cety6nqnci3n6" path="res://godot_ap/ui/updown_lineedit.gd" id="6_k728a"]
 
-[node name="CommonClient" instance=ExtResource("1_i5jgm")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4raer"]
 
-[node name="Settings" parent="Tabs" index="3" instance=ExtResource("3_4k5ff")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra3nv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hveq3"]
+font_size = 20
+font_color = Color(1, 0.443684, 0.375096, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CommonClient" unique_id=1057211323 instance=ExtResource("1_i5jgm")]
+hide_console_tab = true
+hide_hints_tab = true
+
+[node name="Tabs" parent="." index="0"]
+current_tab = 2
+
+[node name="Console" parent="Tabs" index="1"]
+visible = false
+metadata/_tab_index = 1
+
+[node name="Hints" parent="Tabs" index="2"]
+metadata/_tab_index = 2
+
+[node name="Connect" type="MarginContainer" parent="Tabs" index="3" unique_id=513358186]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+metadata/_tab_index = 2
+
+[node name="Row" type="HBoxContainer" parent="Tabs/Connect" index="0" unique_id=379007333]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -1
+
+[node name="Connect" type="PanelContainer" parent="Tabs/Connect/Row" index="0" unique_id=535177056]
+clip_contents = true
+layout_mode = 2
+
+[node name="Margins" type="MarginContainer" parent="Tabs/Connect/Row/Connect" index="0" unique_id=1438372036]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBox" type="VBoxContainer" parent="Tabs/Connect/Row/Connect/Margins" index="0" unique_id=659349505]
+layout_mode = 2
+
+[node name="Content" type="GridContainer" parent="Tabs/Connect/Row/Connect/Margins/VBox" index="0" unique_id=1763004656]
+layout_mode = 2
+theme_override_constants/v_separation = 8
+columns = 2
+script = ExtResource("5_hladf")
+
+[node name="Label" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="0" unique_id=1783927856]
+layout_mode = 2
+text = "IP:"
+horizontal_alignment = 2
+
+[node name="IP_Box" type="LineEdit" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="1" unique_id=1645408026]
+custom_minimum_size = Vector2(200, 33)
+layout_mode = 2
+focus_neighbor_top = NodePath("../HBox/Pwd_Box")
+focus_neighbor_bottom = NodePath("../Port_Box")
+focus_next = NodePath("../Port_Box")
+focus_previous = NodePath("../HBox/Pwd_Box")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("6_k728a")
+
+[node name="Label2" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="2" unique_id=1917828493]
+layout_mode = 2
+text = "Port:"
+horizontal_alignment = 2
+
+[node name="Port_Box" type="LineEdit" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="3" unique_id=737539569]
+custom_minimum_size = Vector2(200, 33)
+layout_mode = 2
+focus_neighbor_top = NodePath("../IP_Box")
+focus_neighbor_bottom = NodePath("../Slot_Box")
+focus_next = NodePath("../Slot_Box")
+focus_previous = NodePath("../IP_Box")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("6_k728a")
+
+[node name="Label3" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="4" unique_id=1808264973]
+layout_mode = 2
+text = "Slot:"
+horizontal_alignment = 2
+
+[node name="Slot_Box" type="LineEdit" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="5" unique_id=1366592365]
+custom_minimum_size = Vector2(200, 33)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Port_Box")
+focus_neighbor_bottom = NodePath("../HBox/Pwd_Box")
+focus_next = NodePath("../HBox/Pwd_Box")
+focus_previous = NodePath("../Port_Box")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("6_k728a")
+
+[node name="Label6" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="6" unique_id=849288270]
+layout_mode = 2
+text = "Password:"
+horizontal_alignment = 2
+
+[node name="HBox" type="HBoxContainer" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="7" unique_id=39502409]
+layout_mode = 2
+
+[node name="ShowPwd" type="CheckBox" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content/HBox" index="0" unique_id=1859201765]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4raer")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ra3nv")
+
+[node name="Pwd_Box" type="LineEdit" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content/HBox" index="1" unique_id=731245760]
+custom_minimum_size = Vector2(200, 33)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Slot_Box")
+focus_neighbor_bottom = NodePath("../../IP_Box")
+focus_next = NodePath("../../IP_Box")
+focus_previous = NodePath("../../Slot_Box")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("6_k728a")
+
+[node name="Label4" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="8" unique_id=82160589]
+layout_mode = 2
+text = "DeathLink:"
+horizontal_alignment = 2
+
+[node name="DeathLinkCheck" type="CheckBox" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="9" unique_id=572740672]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="10" unique_id=2090256583]
+layout_mode = 2
+text = "DeathLink Group:"
+horizontal_alignment = 2
+
+[node name="DeathLinkGroup" type="LineEdit" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="11" unique_id=2045951733]
+layout_mode = 2
+
+[node name="_nil" type="Control" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="12" unique_id=914384284]
+layout_mode = 2
+
+[node name="ErrorLabel" type="Label" parent="Tabs/Connect/Row/Connect/Margins/VBox/Content" index="13" unique_id=777879476]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_hveq3")
+
+[node name="ButtonRow" type="HBoxContainer" parent="Tabs/Connect/Row/Connect/Margins/VBox" index="1" unique_id=889718540]
+layout_mode = 2
+
+[node name="ConnectBtn" type="Button" parent="Tabs/Connect/Row/Connect/Margins/VBox/ButtonRow" index="0" unique_id=1538227229]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Connect"
+
+[node name="DisconnectBtn" type="Button" parent="Tabs/Connect/Row/Connect/Margins/VBox/ButtonRow" index="1" unique_id=531754474]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Disconnect"
+
+[node name="Minesweeper" parent="Tabs" index="4" unique_id=1625488010 instance=ExtResource("2_kwywh")]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
+
+[node name="Settings" parent="Tabs" index="5" unique_id=181449045 instance=ExtResource("3_4k5ff")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[connection signal="text_submitted" from="Tabs/Connect/Row/Connect/Margins/VBox/Content/IP_Box" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="try_connection" unbinds=1]
+[connection signal="text_submitted" from="Tabs/Connect/Row/Connect/Margins/VBox/Content/Port_Box" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="try_connection" unbinds=1]
+[connection signal="text_submitted" from="Tabs/Connect/Row/Connect/Margins/VBox/Content/Slot_Box" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="try_connection" unbinds=1]
+[connection signal="text_submitted" from="Tabs/Connect/Row/Connect/Margins/VBox/Content/HBox/Pwd_Box" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="try_connection" unbinds=1]
+[connection signal="pressed" from="Tabs/Connect/Row/Connect/Margins/VBox/ButtonRow/ConnectBtn" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="try_connection"]
+[connection signal="pressed" from="Tabs/Connect/Row/Connect/Margins/VBox/ButtonRow/DisconnectBtn" to="Tabs/Connect/Row/Connect/Margins/VBox/Content" method="kill_connection"]
