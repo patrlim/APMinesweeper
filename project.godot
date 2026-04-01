@@ -21,7 +21,7 @@ See https://github.com/EmilyV99/GodotAP"
 config/version="0.4.1"
 run/main_scene="res://godot_ap/ui/main.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://d3pml08m6am0u"
 
 [autoload]
 
