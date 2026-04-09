@@ -1,10 +1,10 @@
 extends GridContainer
 
-@onready var ipbox: LineEdit = $IP_Box
-@onready var portbox: LineEdit = $Port_Box
-@onready var slotbox: LineEdit = $Slot_Box
-@onready var pwdbox: LineEdit = $Pwd_Box
-@onready var errlbl: Label = $ErrorLabel
+@export var ipbox: LineEdit
+@export var portbox: LineEdit
+@export var slotbox: LineEdit
+@export var pwdbox: LineEdit
+@export var errlbl: Label
 
 func _ready() -> void:
 	Archipelago.creds.updated.connect(refresh_creds)

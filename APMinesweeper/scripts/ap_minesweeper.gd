@@ -2,6 +2,7 @@ extends MarginContainer
 
 # The different "pages"
 @export var difficultyScreen : Node
+@export var difficultyContainer : Node
 @export var minesweeperScreen : Node
 
 # The thing that contains the tiles
@@ -48,15 +49,15 @@ func setup_difficulty_select() -> void:
 	for difficulty in difficulties:
 		var dimensionsLabel : Label = Label.new()
 		dimensionsLabel.text = str(difficulty.width) + " x " + str(difficulty.height)
-		difficultyScreen.add_child(dimensionsLabel)
+		difficultyContainer.add_child(dimensionsLabel)
 		
 		var minecountLabel : Label = Label.new()
 		minecountLabel.text = str(difficulty.minecount) + "mines"
-		difficultyScreen.add_child(minecountLabel)
+		difficultyContainer.add_child(minecountLabel)
 		
 		var difficultyButton : DifficultyButton = DifficultyButton.new(difficulty, difficulty.name)
 		difficultyButton.difficulty_chosen.connect(pick_difficulty)
-		difficultyScreen.add_child(difficultyButton)
+		difficultyContainer.add_child(difficultyButton)
 
 func set_minefield_width() -> void:
 	minesweeperGrid.set_columns(game.difficulty.height)

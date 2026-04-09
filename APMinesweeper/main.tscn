@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b5gevy733lokc" path="res://APMinesweeper/assets/8.png" id="17_nu7d2"]
 [ext_resource type="Texture2D" uid="uid://bant0euv0r8y0" path="res://APMinesweeper/assets/Tile.png" id="18_ysykk"]
 [ext_resource type="Script" uid="uid://bsdtx0i254mx2" path="res://APMinesweeper/scripts/minesweeperAssets.gd" id="19_pa72g"]
+[ext_resource type="Script" uid="uid://cyc8jkqjagswj" path="res://godot_ap/ui/connect_box.gd" id="20_1asna"]
 
 [sub_resource type="Resource" id="Resource_7pv2q"]
 script = ExtResource("3_1asna")
@@ -68,7 +69,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_y6oxv")
 
-[node name="Minesweeper" type="MarginContainer" parent="." unique_id=1480846313 node_paths=PackedStringArray("minesweeperScreen")]
+[node name="Minesweeper" type="MarginContainer" parent="." unique_id=1480846313 node_paths=PackedStringArray("difficultyScreen", "difficultyContainer", "minesweeperScreen")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -76,6 +77,8 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("2_cqxg5")
+difficultyScreen = NodePath("DifficultyScreen")
+difficultyContainer = NodePath("DifficultyScreen/CenterContainer/DifficultySelect")
 minesweeperScreen = NodePath("MinesweeperScreen")
 difficulties = Array[ExtResource("3_1asna")]([SubResource("Resource_7pv2q"), SubResource("Resource_3fsfw"), SubResource("Resource_ssh2m")])
 deathlink = SubResource("Resource_nh4m1")
@@ -111,8 +114,85 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 0.0
 columns = 3
 
-[node name="DifficultySelect" type="GridContainer" parent="Minesweeper" unique_id=1901813297]
-custom_minimum_size = Vector2(16, 16)
+[node name="DifficultyScreen" type="HBoxContainer" parent="Minesweeper" unique_id=64399021]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Minesweeper/DifficultyScreen" unique_id=1133005887]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="DifficultySelect" type="GridContainer" parent="Minesweeper/DifficultyScreen/CenterContainer" unique_id=1901813297]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
 columns = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="Minesweeper/DifficultyScreen" unique_id=1618805991]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConnectScreen" type="GridContainer" parent="Minesweeper/DifficultyScreen/CenterContainer2" unique_id=1398872337 node_paths=PackedStringArray("ipbox", "portbox", "slotbox", "pwdbox", "errlbl")]
+layout_mode = 2
+columns = 2
+script = ExtResource("20_1asna")
+ipbox = NodePath("IPBox")
+portbox = NodePath("PortBox")
+slotbox = NodePath("SlotBox")
+pwdbox = NodePath("PWDBox")
+errlbl = NodePath("Error")
+
+[node name="IPLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=2039126409]
+layout_mode = 2
+text = "IP:"
+
+[node name="IPBox" type="LineEdit" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=477676064]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=934658427]
+layout_mode = 2
+text = "Port"
+
+[node name="PortBox" type="LineEdit" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=306165429]
+layout_mode = 2
+
+[node name="SlotLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=837023704]
+layout_mode = 2
+text = "Slot"
+
+[node name="SlotBox" type="LineEdit" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=1371946522]
+layout_mode = 2
+
+[node name="PWDLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=2030476492]
+layout_mode = 2
+text = "Password"
+
+[node name="PWDBox" type="LineEdit" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=71410067]
+layout_mode = 2
+
+[node name="DLLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=142979651]
+layout_mode = 2
+text = "DeathLink"
+
+[node name="DLCheck" type="CheckBox" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=220715495]
+layout_mode = 2
+
+[node name="DLGroupLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=1069518968]
+layout_mode = 2
+text = "DeathLink Group"
+
+[node name="DLGroupText" type="LineEdit" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=1283894663]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=992290816]
+layout_mode = 2
+
+[node name="Error" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=822997873]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=429757754]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=1766330451]
+layout_mode = 2
+text = "Connect"
