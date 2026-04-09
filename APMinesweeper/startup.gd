@@ -1,4 +1,4 @@
-class_name GodotAPMain extends ColorRect
+class_name APMinesweeperMain extends Control
 ## Directly opens the CommonClient Console in the current SceneTree
 ## Used for standalone client applications
 
@@ -8,7 +8,7 @@ func _ready():
 
 	Archipelago.AP_CLIENT_VERSION = Version.val(0,1,0) # GodotAP CommonClient version
 	AP.log(Archipelago.AP_CLIENT_VERSION)
-	Archipelago.set_tags(["TextOnly"])
+	Archipelago.set_tags(["HintGame"])
 	Archipelago.AP_ITEM_HANDLING = Archipelago.ItemHandling.ALL
 	Archipelago.creds.updated.connect(GodotAPMain.save_connection)
 	GodotAPMain.load_connection()
@@ -16,8 +16,8 @@ func _ready():
 	if Archipelago.output_console:
 		Archipelago.close_console()
 	get_window().min_size = Vector2(750,400)
-	get_window().title = "AP Text Client"
-	Archipelago.load_packed_console_as_scene(get_tree(), load("res://godot_ap/ui/common_client.tscn"))
+	get_window().title = "APMinesweeper"
+	#Archipelago.load_packed_console_as_scene(get_tree(), load("res://godot_ap/ui/common_client.tscn"))
 
 static func load_connection():
 	var conn_info_file: FileAccess = FileAccess.open("user://ap/connection.dat", FileAccess.READ)
@@ -27,6 +27,7 @@ static func load_connection():
 	var slot = conn_info_file.get_line()
 	Archipelago.creds.update(ip, port, slot, "")
 	conn_info_file.close()
+	
 static func save_connection(creds: APCredentials):
 	DirAccess.make_dir_recursive_absolute("user://ap/")
 	var conn_info_file: FileAccess = FileAccess.open("user://ap/connection.dat", FileAccess.WRITE)

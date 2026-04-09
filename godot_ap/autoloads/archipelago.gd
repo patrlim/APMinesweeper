@@ -482,7 +482,6 @@ func _handle_command(json: Dictionary) -> void: # Handle an incoming packet from
 			args["game"] = AP_GAME_NAME
 			args["tags"] = AP_GAME_TAGS
 			args["items_handling"] = AP_ITEM_HANDLING
-			conn.force_scout_all()
 			roominfo.emit(conn, json)
 			SignalChooser.new().register_multiple(
 				[all_datapacks_loaded, disconnected],

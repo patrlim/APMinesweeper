@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://qhyyw87oovoy"]
+
+[ext_resource type="Script" uid="uid://cnkfldgn8h3x1" path="res://APMinesweeper/startup.gd" id="1_y6oxv"]
+[ext_resource type="Script" uid="uid://bvjegx3ub4kct" path="res://APMinesweeper/scripts/ap_minesweeper.gd" id="2_cqxg5"]
+[ext_resource type="Script" uid="uid://r0tpqin2vuow" path="res://APMinesweeper/scripts/difficulty.gd" id="3_1asna"]
+[ext_resource type="Script" uid="uid://cea6hmilpjdx2" path="res://APMinesweeper/scripts/deathlink.gd" id="4_fnkwj"]
+[ext_resource type="Texture2D" uid="uid://dhb80yaf2aogb" path="res://APMinesweeper/assets/CrossedOutBomb.png" id="5_tyh2d"]
+[ext_resource type="Texture2D" uid="uid://c5qhqmpbwc5b6" path="res://APMinesweeper/assets/TileExposed.png" id="6_u7xwk"]
+[ext_resource type="Texture2D" uid="uid://cmy4bvwllro6e" path="res://APMinesweeper/assets/Flag.png" id="7_8mkow"]
+[ext_resource type="Texture2D" uid="uid://bdnqnqjh566lx" path="res://APMinesweeper/assets/Bomb.png" id="8_aeidp"]
+[ext_resource type="Texture2D" uid="uid://bxp3uvt55bo0" path="res://APMinesweeper/assets/ExplodedBomb.png" id="9_jj5t4"]
+[ext_resource type="Texture2D" uid="uid://v5djm32tu8f8" path="res://APMinesweeper/assets/1.png" id="10_ravje"]
+[ext_resource type="Texture2D" uid="uid://cnvn7njorde5f" path="res://APMinesweeper/assets/2.png" id="11_ejge8"]
+[ext_resource type="Texture2D" uid="uid://bk5vkuifgkrqa" path="res://APMinesweeper/assets/3.png" id="12_frgpg"]
+[ext_resource type="Texture2D" uid="uid://ce37quro1wlyo" path="res://APMinesweeper/assets/4.png" id="13_jf8kj"]
+[ext_resource type="Texture2D" uid="uid://bnsxkbsp2bgi6" path="res://APMinesweeper/assets/5.png" id="14_vm85q"]
+[ext_resource type="Texture2D" uid="uid://degufaw7taya6" path="res://APMinesweeper/assets/6.png" id="15_nw42u"]
+[ext_resource type="Texture2D" uid="uid://hwrdrr05f0gl" path="res://APMinesweeper/assets/7.png" id="16_t0ise"]
+[ext_resource type="Texture2D" uid="uid://b5gevy733lokc" path="res://APMinesweeper/assets/8.png" id="17_nu7d2"]
+[ext_resource type="Texture2D" uid="uid://bant0euv0r8y0" path="res://APMinesweeper/assets/Tile.png" id="18_ysykk"]
+[ext_resource type="Script" uid="uid://bsdtx0i254mx2" path="res://APMinesweeper/scripts/minesweeperAssets.gd" id="19_pa72g"]
+
+[sub_resource type="Resource" id="Resource_7pv2q"]
+script = ExtResource("3_1asna")
+width = 9
+height = 9
+name = "Easy"
+metadata/_custom_type_script = "uid://r0tpqin2vuow"
+
+[sub_resource type="Resource" id="Resource_3fsfw"]
+script = ExtResource("3_1asna")
+width = 16
+height = 16
+minecount = 40
+name = "Advanced"
+metadata/_custom_type_script = "uid://r0tpqin2vuow"
+
+[sub_resource type="Resource" id="Resource_ssh2m"]
+script = ExtResource("3_1asna")
+width = 16
+height = 30
+minecount = 99
+name = "Expert"
+metadata/_custom_type_script = "uid://r0tpqin2vuow"
+
+[sub_resource type="Resource" id="Resource_nh4m1"]
+script = ExtResource("4_fnkwj")
+metadata/_custom_type_script = "uid://cea6hmilpjdx2"
+
+[sub_resource type="Resource" id="Resource_hoehd"]
+script = ExtResource("19_pa72g")
+numbers = Array[Texture2D]([null, ExtResource("10_ravje"), ExtResource("11_ejge8"), ExtResource("12_frgpg"), ExtResource("13_jf8kj"), ExtResource("14_vm85q"), ExtResource("15_nw42u"), ExtResource("16_t0ise"), ExtResource("17_nu7d2")])
+mine = ExtResource("8_aeidp")
+mineExploded = ExtResource("9_jj5t4")
+flag = ExtResource("7_8mkow")
+raisedTile = ExtResource("18_ysykk")
+depressedTile = ExtResource("6_u7xwk")
+crossedOutMine = ExtResource("5_tyh2d")
+metadata/_custom_type_script = "uid://bsdtx0i254mx2"
+
+[node name="Main" type="PanelContainer" unique_id=185369640]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_y6oxv")
+
+[node name="Minesweeper" type="MarginContainer" parent="." unique_id=1480846313 node_paths=PackedStringArray("minesweeperScreen")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("2_cqxg5")
+minesweeperScreen = NodePath("MinesweeperScreen")
+difficulties = Array[ExtResource("3_1asna")]([SubResource("Resource_7pv2q"), SubResource("Resource_3fsfw"), SubResource("Resource_ssh2m")])
+deathlink = SubResource("Resource_nh4m1")
+assets = SubResource("Resource_hoehd")
+metadata/_tab_index = 1
+
+[node name="MinesweeperScreen" type="VBoxContainer" parent="Minesweeper" unique_id=1692915125]
+visible = false
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="Minesweeper/MinesweeperScreen" unique_id=2060823946]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Minesweeper/MinesweeperScreen/TopBar" unique_id=1836119830]
+layout_mode = 2
+text = "Quit"
+
+[node name="MineCounter" type="Label" parent="Minesweeper/MinesweeperScreen/TopBar" unique_id=344887442]
+layout_mode = 2
+
+[node name="FlagCounter" type="Label" parent="Minesweeper/MinesweeperScreen/TopBar" unique_id=631084339]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Minesweeper/MinesweeperScreen" unique_id=438925558]
+layout_mode = 2
+size_flags_vertical = 3
+draw_focus_border = true
+
+[node name="Minefield" type="GridContainer" parent="Minesweeper/MinesweeperScreen/ScrollContainer" unique_id=399974848]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+columns = 3
+
+[node name="DifficultySelect" type="GridContainer" parent="Minesweeper" unique_id=1901813297]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3

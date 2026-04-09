@@ -1,8 +1,8 @@
 extends MarginContainer
 
 # The different "pages"
-@onready var listOfDifficulty : GridContainer = $DifficultySelect
-@onready var minesweeperScreen : VBoxContainer = $MinesweeperScreen
+@export var difficultyScreen : Node
+@export var minesweeperScreen : Node
 
 # The thing that contains the tiles
 @onready var minesweeperGrid : GridContainer = $MinesweeperScreen/ScrollContainer/Minefield
@@ -48,15 +48,15 @@ func setup_difficulty_select() -> void:
 	for difficulty in difficulties:
 		var dimensionsLabel : Label = Label.new()
 		dimensionsLabel.text = str(difficulty.width) + " x " + str(difficulty.height)
-		listOfDifficulty.add_child(dimensionsLabel)
+		difficultyScreen.add_child(dimensionsLabel)
 		
 		var minecountLabel : Label = Label.new()
 		minecountLabel.text = str(difficulty.minecount) + "mines"
-		listOfDifficulty.add_child(minecountLabel)
+		difficultyScreen.add_child(minecountLabel)
 		
 		var difficultyButton : DifficultyButton = DifficultyButton.new(difficulty, difficulty.name)
 		difficultyButton.difficulty_chosen.connect(pick_difficulty)
-		listOfDifficulty.add_child(difficultyButton)
+		difficultyScreen.add_child(difficultyButton)
 
 func set_minefield_width() -> void:
 	minesweeperGrid.set_columns(game.difficulty.height)
@@ -73,11 +73,11 @@ func pick_difficulty(difficulty : Difficulty) -> void:
 	return
 
 func switch_to_difficulty_select() -> void:
-	listOfDifficulty.show()
+	difficultyScreen.show()
 	minesweeperScreen.hide()
 	return
 	
 func switch_to_game_board() -> void:
-	listOfDifficulty.hide()
+	difficultyScreen.hide()
 	minesweeperScreen.show()
 	return

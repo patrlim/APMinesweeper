@@ -23,6 +23,7 @@
 script = ExtResource("2_lm4ll")
 width = 9
 height = 9
+name = "Easy"
 metadata/_custom_type_script = "uid://r0tpqin2vuow"
 
 [sub_resource type="Resource" id="Resource_3fsfw"]
@@ -30,6 +31,7 @@ script = ExtResource("2_lm4ll")
 width = 16
 height = 16
 minecount = 40
+name = "Advanced"
 metadata/_custom_type_script = "uid://r0tpqin2vuow"
 
 [sub_resource type="Resource" id="Resource_ssh2m"]
@@ -37,6 +39,7 @@ script = ExtResource("2_lm4ll")
 width = 16
 height = 30
 minecount = 99
+name = "Expert"
 metadata/_custom_type_script = "uid://r0tpqin2vuow"
 
 [sub_resource type="Resource" id="Resource_nh4m1"]
