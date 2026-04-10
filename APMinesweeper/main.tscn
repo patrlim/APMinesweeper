@@ -131,7 +131,7 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ConnectScreen" type="GridContainer" parent="Minesweeper/DifficultyScreen/CenterContainer2" unique_id=1398872337 node_paths=PackedStringArray("ipbox", "portbox", "slotbox", "pwdbox", "errlbl")]
+[node name="ConnectScreen" type="GridContainer" parent="Minesweeper/DifficultyScreen/CenterContainer2" unique_id=1398872337 node_paths=PackedStringArray("ipbox", "portbox", "slotbox", "pwdbox", "errlbl", "dlCheck", "dlGroup", "connectButton")]
 layout_mode = 2
 columns = 2
 script = ExtResource("20_1asna")
@@ -140,6 +140,9 @@ portbox = NodePath("PortBox")
 slotbox = NodePath("SlotBox")
 pwdbox = NodePath("PWDBox")
 errlbl = NodePath("Error")
+dlCheck = NodePath("DLCheck")
+dlGroup = NodePath("DLGroupText")
+connectButton = NodePath("Button")
 
 [node name="IPLabel" type="Label" parent="Minesweeper/DifficultyScreen/CenterContainer2/ConnectScreen" unique_id=2039126409]
 layout_mode = 2

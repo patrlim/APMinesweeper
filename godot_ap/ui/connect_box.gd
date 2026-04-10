@@ -5,12 +5,17 @@ extends GridContainer
 @export var slotbox: LineEdit
 @export var pwdbox: LineEdit
 @export var errlbl: Label
+@export var dlCheck: Button
+@export var dlGroup: LineEdit
+@export var connectButton: Button
 
 func _ready() -> void:
 	Archipelago.creds.updated.connect(refresh_creds)
 	refresh_creds(Archipelago.creds)
 	Archipelago.connected.connect(func(_conn,_json): update_connection(true))
 	Archipelago.disconnected.connect(func(): update_connection(false))
+	connectButton.pressed.connect(try_connection)
+	
 func refresh_creds(creds: APCredentials) -> void:
 	ipbox.text = creds.ip
 	portbox.text = creds.port
@@ -22,10 +27,17 @@ func update_connection(status: bool) -> void:
 	portbox.editable = not status
 	slotbox.editable = not status
 	pwdbox.editable = not status
+	connectButton.text = "Disconnect" if status else "Connect"
+	
 func try_connection() -> void:
 	if Archipelago.is_not_connected():
+		Archipelago.set_deathlink(dlCheck.button_pressed)
+		Archipelago.set_deathlink_group(dlGroup.text)
+		connectButton.text = "Connecting..."
 		Archipelago.ap_connect(ipbox.text, portbox.text, slotbox.text, pwdbox.text)
 		_connect_signals()
+	else:
+		kill_connection()
 
 func kill_connection() -> void:
 	Archipelago.ap_disconnect()
